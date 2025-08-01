@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Student Signup</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('signup') }}">
+            <input type="text" name="name" placeholder="Full Name" required><br>
+
+            <input type="email" name="email" placeholder="Email Address" required><br>
+
+            <input type="text" name="college_id" placeholder="College ID" required><br>
+
+            <select name="branch" required>
+                <option value="" disabled selected>Select Branch</option>
+                <option value="MCA">MCA</option>
+                <option value="MBA">MBA</option>
+                <option value="CSE">CSE</option>
+                <option value="MECH">MECH</option>
+                <option value="EEE">EEE</option>
+            </select><br>
+
+            <input type="password" name="password" placeholder="Password" required><br>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p>Already registered? <a href="{{ url_for('login') }}">Login here</a>.</p>
+    </div>
+</body>
+</html>

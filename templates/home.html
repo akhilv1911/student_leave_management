@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home | Student Leave Management</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to Student Leave Management System</h2>
+        <a href="{{ url_for('signup') }}">Student Signup</a>
+        <a href="{{ url_for('login') }}">Student Login</a>
+        <a href="{{ url_for('admin_login') }}">Admin Login</a>
+        <a href="{{ url_for('admin_signup') }}">Admin Signup</a>
+    </div>
+</body>
+</html>

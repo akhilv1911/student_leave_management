@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f0f2f5;
+    }
+
+    .header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      background-color: #343a40;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #ccc;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #495057;
+      color: white;
+    }
+
+    .main {
+      margin-left: 230px;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .logout-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background-color: #dc3545;
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .logout-btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    Admin Dashboard
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+  </div>
+
+  <div class="sidebar">
+    <a href="{{ url_for('admin_dashboard') }}">Home</a>
+    <a href="{{ url_for('view_users') }}">View All Users</a>
+    <a href="{{ url_for('view_faculty') }}">View Faculty</a>
+    <a href="{{ url_for('add_user') }}">Add Student/CR/Faculty</a>
+    <a href="{{ url_for('view_leaves') }}">View Leave Requests</a>
+  </div>
+
+  <div class="main">
+    <div class="card">
+      <h3>Welcome, Admin!</h3>
+      <p>This dashboard allows you to manage users and leave records.</p>
+      <ul>
+        <li>View and manage students, CRs, and faculty</li>
+        <li>Access all submitted leave requests</li>
+        <li>Add new users to the system</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Quick Stats</h3>
+      <p><strong>Total Students:</strong> {{ total_students }}</p>
+      <p><strong>Total Faculty:</strong> {{ total_faculty }}</p>
+      <p><strong>Total Leave Requests:</strong> {{ total_leaves }}</p>
+    </div>
+  </div>
+</body>
+</html>
+<!-- Admin Dashboard HTML -->

@@ -1,0 +1,54 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .verify-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+        .verify-box h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .verify-box p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .verify-box a {
+            text-decoration: none;
+            background-color: #4facfe;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .verify-box a:hover {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="verify-box">
+        <h2>Email Verification</h2>
+        <p>We've sent a verification link to your email address: <strong>{{ email }}</strong>.</p>
+        <p>Please check your inbox (or spam folder) and click the link to activate your account.</p>
+        <a href="{{ url_for('login') }}">Back to Login</a>
+    </div>
+</body>
+</html>
+ail HTML -->

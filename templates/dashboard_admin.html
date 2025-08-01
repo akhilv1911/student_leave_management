@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Faculty Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Faculty Panel</h2>
+    <a href="{{ url_for('faculty_portal') }}">Home</a>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+  </div>
+
+  <div class="main">
+    <h1>Forwarded Leave Requests</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% if leave_requests %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Student ID</th>
+          <th>Name</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Reason</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for leave in leave_requests %}
+        <tr>
+          <td>{{ leave[0] }}</td>
+          <td>{{ leave[1] }}</td>
+          <td>{{ leave[2] }}</td>
+          <td>{{ leave[3] }}</td>
+          <td>{{ leave[4] }}</td>
+          <td>{{ leave[5] }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('accept_leave') }}" style="display:inline;">
+              <input type="hidden" name="id" value="{{ leave[0] }}">
+              <button type="submit" class="action-btn accept">Accept</button>
+            </form>
+            <form method="POST" action="{{ url_for('reject_leave') }}" style="display:inline;">
+              <input type="hidden" name="id" value="{{ leave[0] }}">
+              <button type="submit" class="action-btn reject">Reject</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>No forwarded leave requests found.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
