@@ -143,6 +143,7 @@ def verify_email(token):
         user = cursor.fetchone()
 
     session['user'] = user[0]
+    session['user_name'] = user[1]
     session['role'] = user[6]
 
     if user[6] == 'student':
@@ -242,6 +243,15 @@ def admin_dashboard():
         return redirect('/admin_login')
     return render_template('admin_dashboard.html')
 
+@app.route('/faculty_login', methods=['GET', 'POST'])
+def faculty_login():
+    # ... your logic ...
+    return render_template('faculty_login.html')
+
+@app.route('/faculty_signup', methods=['GET', 'POST'])
+def faculty_signup():
+    # ... your logic ...
+    return render_template('faculty_signup.html')
 
 @app.route('/faculty_portal')
 def faculty_portal():

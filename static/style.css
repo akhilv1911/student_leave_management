@@ -1,24 +1,129 @@
-
 body {
     background: linear-gradient(to right, #8360c3, #2ebf91);
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
 }
+
 .container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background: #fff;
+    padding: 32px 28px;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.15);
+    width: 100%;
+    max-width: 400px;
 }
+
+h2 {
+    text-align: center;
+    color: #2ebf91;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
 select {
     padding: 12px;
     width: 100%;
-    margin: 10px 0;
+    margin-top: 4px;
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 16px;
+    background: #f7f7f7;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: #2ebf91;
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #2ebf91, #8360c3);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #8360c3, #2ebf91);
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 18px;
+}
+
+.flashes li {
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.flashes li.success {
+    background: #e6f9f2;
+    color: #1e7e5c;
+    border-left: 4px solid #2ebf91;
+}
+
+.flashes li.danger {
+    background: #fdeaea;
+    color: #c0392b;
+    border-left: 4px solid #e74c3c;
+}
+
+.flashes li.warning {
+    background: #fffbe6;
+    color: #b7950b;
+    border-left: 4px solid #f1c40f;
+}
+
+a {
+    color: #8360c3;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #2ebf91;
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 18px 8px;
+        max-width: 98vw;
+    }
+    h2 {
+        font-size: 1.3rem;
+    }
 }

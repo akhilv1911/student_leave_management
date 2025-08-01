@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Home | Student Leave Management</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
 </head>
 <body>
     <div class="container">
@@ -13,6 +12,8 @@
         <a href="{{ url_for('login') }}">Student Login</a>
         <a href="{{ url_for('admin_login') }}">Admin Login</a>
         <a href="{{ url_for('admin_signup') }}">Admin Signup</a>
+        <a href="{{ url_for('faculty_login') }}">Faculty Login</a>
+        <a href="{{ url_for('faculty_signup') }}">Faculty Signup</a>
     </div>
 </body>
 </html>
