@@ -1,6 +1,6 @@
 Flask
 flask_mail
 itsdangerous
-sqlite3
+
 gunicorn
 
