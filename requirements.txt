@@ -1,6 +1,5 @@
 Flask
 flask_mail
 itsdangerous
-
 gunicorn
 

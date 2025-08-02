@@ -229,12 +229,29 @@ def admin_signup():
 
     return render_template('admin_signup.html')
 
-
 @app.route('/dashboard')
 def dashboard():
-    if 'user' not in session:
+    if 'user' not in session or session.get('role') != 'student':
         return redirect('/login')
-    return render_template('student_dashboard.html')
+    with sqlite3.connect(DB_PATH) as conn:
+        cursor = conn.cursor()
+        # Fetch student info
+        cursor.execute('SELECT * FROM users WHERE id=?', (session['user'],))
+        user_row = cursor.fetchone()
+        # Fetch leave applications
+        cursor.execute('SELECT * FROM leave_applications WHERE user_id=?', (session['user'],))
+        leaves = cursor.fetchall()
+    # Prepare student dict for template
+    student = {
+        'id': user_row[0],
+        'name': user_row[1],
+        'email': user_row[2],
+        'college_id': user_row[4],
+        'branch': user_row[5],
+        'total_leaves': user_row[8],
+        'leaves_taken': user_row[9]
+    }
+    return render_template('student_dashboard.html', student=student, leaves=leaves)
 
 
 @app.route('/admin_dashboard')
@@ -273,7 +290,7 @@ def logout():
 @app.route('/accept_leave', methods=['POST'])
 def accept_leave():
     leave_id = request.form['id']
-    with sqlite3.connect('database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:  # <-- Use DB_PATH
         cursor = conn.cursor()
         cursor.execute('''
             UPDATE leave_applications 
@@ -286,7 +303,7 @@ def accept_leave():
 @app.route('/reject_leave', methods=['POST'])
 def reject_leave():
     leave_id = request.form['id']
-    with sqlite3.connect('database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:  # <-- Use DB_PATH
         cursor = conn.cursor()
         cursor.execute('''
             UPDATE leave_applications 
@@ -295,6 +312,7 @@ def reject_leave():
         ''', (session.get('user_name'), leave_id))
         conn.commit()
     return redirect('/faculty_portal')
+
 
 
 
